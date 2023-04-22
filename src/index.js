@@ -14,6 +14,9 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json());
+
 const routes = require('./routes.js');
 app.use('/api', routes);
 

@@ -17,9 +17,15 @@ module.exports = {
         type: Sequelize.STRING(2000),
         allowNull: true
       },
-      area: {
-        type: Sequelize.STRING(70),
-        allowNull: true
+      category_id: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: {
+            model: 'categories',
+            key: 'id',
+            onUpdate: 'cascade',
+            onDelete: 'cascade'
+        }
       },
       is_important: {
         type: Sequelize.BOOLEAN,

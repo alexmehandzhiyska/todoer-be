@@ -29,11 +29,11 @@ module.exports = {
       },
       is_important: {
         type: Sequelize.BOOLEAN,
-        allowNull: false
+        defaultValue: false
       },
       is_urgent: {
         type: Sequelize.BOOLEAN,
-        allowNull: false
+        defaultValue: false
       },
       due_date: {
         type: Sequelize.DATE,

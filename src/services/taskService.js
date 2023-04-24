@@ -1,7 +1,18 @@
 const Task = require('../models/index').Task;
 
-const getAll = async () => {
-    const tasks = await Task.findAll({});
+const getAll = async (dueDate) => {
+    let tasks = [];
+    
+    if (dueDate == 'null') {
+        tasks = await Task.findAll({ where: { due_date: null } });
+    } else {
+        tasks = await Task.findAll({});
+
+        if (dueDate) {
+            tasks = tasks.filter(task => new Date(task.dueDate).toJSON().slice(0, 10) == dueDate);
+        }
+    }
+    
     return tasks;
 };
 

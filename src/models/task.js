@@ -34,11 +34,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     isImportant: {
         type: DataTypes.BOOLEAN,
-        allowNull: false
+        defaultValue: false
     },
     isUrgent: {
         type: DataTypes.BOOLEAN,
-        allowNull: false
+        defaultValue: false
     },
     dueDate: {
         type: DataTypes.DATE,

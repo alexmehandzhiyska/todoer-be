@@ -2,8 +2,10 @@ const router = require('express').Router();
 const taskService = require('../services/taskService');
 
 const getAll = async (req, res) => {
+    const dueDate = req.query.due_date;
+
     try {
-        const tasks = await taskService.getAll();
+        const tasks = await taskService.getAll(dueDate);
         res.status(200).json(tasks);
     } catch (err) {
         res.status(400).json(err.message);
@@ -23,7 +25,7 @@ const getById = async (req, res) => {
 
 const create = async (req, res) => {
     const data = req.body;
-
+    
     try {
         const task = await taskService.create(data);
         res.status(201).json(task);

@@ -1,6 +1,5 @@
 const Category = require('../models/index').Category;
 const Task = require('../models/index').Task;
-const areaService = require('./areaService');
 
 const getAll = async () => {
     const categories = await Category.findAll();
@@ -23,9 +22,8 @@ const getTasks = async (categoryId) => {
 };
 
 const create = async (data) => {
-    await Category.create(data);
-    const updatedAreas = await areaService.getAll();
-    return updatedAreas;
+    const category = await Category.create(data);
+    return category.dataValues;
 };
 
 const updateById = async (categoryId, newCategory) => {

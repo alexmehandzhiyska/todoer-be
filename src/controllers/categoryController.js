@@ -36,8 +36,8 @@ const create = async (req, res) => {
     const data = req.body;
 
     try {
-        const updatedAreas = await categoryService.create(data);
-        res.status(201).json(updatedAreas);
+        const category = await categoryService.create(data);
+        res.status(201).json(category);
     } catch (err) {
         res.status(400).json(err.message);
     }

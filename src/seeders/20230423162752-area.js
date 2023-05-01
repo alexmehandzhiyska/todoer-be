@@ -4,6 +4,11 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.bulkInsert('areas', [
+        {
+            name: 'General',
+            created_at: '2023-04-21 00:00:00+02',
+            updated_at: '2023-04-21 00:00:00+02'
+        },
         { 
             name: 'Studying',
             created_at: '2023-04-21 00:00:00+02',

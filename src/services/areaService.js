@@ -25,6 +25,7 @@ const getCategories = async (areaId) => {
 
 const create = async (data) => {
     const area = await Area.create(data);
+    area.dataValues.categories = []
     return area.dataValues;
 };
 

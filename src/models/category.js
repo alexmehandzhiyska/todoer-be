@@ -20,7 +20,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     areaId: {
         type: DataTypes.INTEGER,
-        allowNull: true,
+        allowNull: false,
+        defaultValue: 1,
         references: {
             model: 'areas',
             key: 'id',

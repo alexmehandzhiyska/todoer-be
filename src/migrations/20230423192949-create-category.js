@@ -16,6 +16,7 @@ module.exports = {
       area_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        defaultValue: 1,
         references: {
             model: 'areas',
             key: 'id',

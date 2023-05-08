@@ -40,6 +40,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false
     },
+    completed: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+    },
     dueDate: {
         type: DataTypes.DATE,
         allowNull: true

@@ -37,10 +37,13 @@ const create = async (data) => {
 };
 
 const updateById = async (taskId, newTask) => {
-    const category = await Category.findOne({ where: { name: newTask.category } });
+    const newCategoryData = await Category.findOne({ where: { name: newTask.category } });
+    const newCategory = newCategoryData.dataValues;
+    newTask.categoryId = newCategory.id;
+    
     const newTaskData = await Task.update({ ...newTask }, { where: { id: taskId }, returning: true });
     const task = newTaskData[1][0].dataValues;
-    task.category = category.dataValues.name;
+    task.category = newCategory.name;
 
     return task;
 };

@@ -1,16 +1,28 @@
 const Task = require('../models/index').Task;
 const Category = require('../models/index').Category;
+const { Op } = require('sequelize');
 
 const getAll = async (dueDate) => {
     let tasks = [];
-    
+
     if (dueDate === 'null') {
         tasks = await Task.findAll({ where: { due_date: null }, order: [['id', 'ASC']] });
-    } else {
-        tasks = await Task.findAll({ order: [['id', 'ASC']]});
-
-        if (dueDate !== 'undefined') {
-            tasks = tasks.filter(task => new Date(task.dueDate).toJSON().slice(0, 10) == dueDate);
+    } else if (dueDate === 'upcoming') {
+        const today = new Date();
+        tasks = await Task.findAll({ where: { due_date: { [Op.gt]: today } }, order: [['id', 'ASC']] });
+    } else  {
+        tasks = await Task.findAll({ order: [['id', 'ASC']] });
+        
+        if (dueDate !== 'inbox') {
+            tasks = tasks.filter(task => {
+                if (task.dataValues.dueDate) {
+                    const taskDueDate = new Date(task.dataValues.dueDate);
+                    taskDueDate.setDate(taskDueDate.getDate() + 1);
+                    return taskDueDate.toJSON().slice(0, 10) === dueDate;
+                }
+    
+                return false;
+            });
         }
     }
 
